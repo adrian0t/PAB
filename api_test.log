@@ -1,0 +1,17 @@
+ 
+[INFO] API Test Run Started: 30.06.2025 23:14:47,35 
+=================================================== 
+[ OK ] Admin authentication successful. 
+ 
+[ OK ] Create project 'TESTPROJ' status: 200
+[ OK ] Get project 'TESTPROJ' details status: 200
+[ OK ] Add task 'TESTPROJ-1' status: 200
+ 
+[ OK ] User authentication successful. 
+ 
+[ OK ] Get 'mine' tasks status (should contain 'TESTPROJ-1'): 200
+ 
+[ OK ] Complete task 'TESTPROJ-1' status: 200
+[ OK ] Delete project 'TESTPROJ' status: 200
+ 
+=================================================== 
