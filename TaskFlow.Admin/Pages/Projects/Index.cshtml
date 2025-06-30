@@ -1,0 +1,52 @@
+﻿@page
+@model TaskFlow.Admin.Pages.Projects.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Projects.First().ProjectKey)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Projects.First().Participants)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Projects.First().Tasks)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Projects)
+        {
+        <tr>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.ProjectKey">@item.ProjectKey</a>
+            </td>
+            <td>
+                <p>@item.Participants.Count</p>
+            </td>
+            <td>
+                <p>@item.Tasks.Count</p>
+            </td>
+            <td>
+                <a asp-page="./Delete" asp-route-id="@item.ProjectKey">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-page="/Dashboard">Back to List</a>
+</div>

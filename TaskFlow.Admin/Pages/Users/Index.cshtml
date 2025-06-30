@@ -1,0 +1,55 @@
+﻿@page
+@model TaskFlow.Admin.Pages.Users.IndexModel
+
+
+<div class="row">
+
+    <div class="col-md-6">
+        <h3>Add User</h3>
+        <form method="post" asp-page-handler="Add">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="@Model.LoginDTO.userName" class="control-label"></label>
+                <input asp-for="@Model.LoginDTO.userName" class="form-control" />
+                <span asp-validation-for="@Model.LoginDTO.userName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.LoginDTO.password" class="control-label"></label>
+                <input asp-for="@Model.LoginDTO.password" class="form-control" type="password" />
+                <span asp-validation-for="@Model.LoginDTO.password" class="text-danger"></span>
+            </div>
+            <hr />
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h3>Tasks</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                       UserName
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<hr />
+<div>
+    <a asp-page="/Dashboard">Back to List</a>
+</div>

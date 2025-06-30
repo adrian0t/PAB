@@ -1,0 +1,79 @@
+﻿@page
+@model TaskFlow.Admin.Pages.Projects.DetailsModel
+@using TaskFlow.Domain.Entities;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div>
+        
+        <dl class="row">
+            <dt class="col-sm-2">
+                <h4>@Html.DisplayNameFor(model => model.Project.ProjectKey)</h4>
+            </dt>
+            <dd class="col-sm-10">
+                <h4> @Html.DisplayFor(model => model.Project.ProjectKey)</h4>
+            </dd>
+        </dl>
+    </div>
+    <hr />
+    <div class="col-md-6">
+        <h3>Assignees</h3>
+
+        <h4>Owner</h4>
+        <ul>
+            @foreach (var owner in Model.Project.Participants.Where(p => p.Role == "Owner"))
+            {
+                <li>@owner.User</li>
+            }
+        </ul>
+
+        <h4>Participants</h4>
+        <ul>
+            @foreach (var participant in Model.Project.Participants.Where(p => p.Role == "Participant"))
+            {
+                <li>@participant.User</li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h3>Tasks</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Project.Tasks.First().TaskKey)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Project.Tasks.First().Assignee)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Project.Tasks.First().IsCompleted)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Project.Tasks.First().CreatedAt)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var task in Model.Project.Tasks)
+                {
+                    <tr>
+                        <td>@task.TaskKey</td>
+                        <td>@task.Assignee</td>
+                        <td>@task.IsCompleted</td>
+                        <td>@task.CreatedAt</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <hr />
+    <div>
+        <a asp-page="./Index">Back to List</a>
+    </div>
+</div>
